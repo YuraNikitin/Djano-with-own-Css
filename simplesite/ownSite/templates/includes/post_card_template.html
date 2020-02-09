@@ -1,0 +1,23 @@
+<!-- One block -->
+<div class="col-4">
+    <div class="blog_item">
+        <div class="blog_img">
+            <img src="{{ post.image.url  }}">
+        </div>
+        <div class="blog_title">
+            {{ post.title }}
+        </div>
+        <div class="blog_text">
+            <p>{{ post.body| truncatewords:10 }}</p>
+            <p>{{ post.date_pub }}</p>
+        </div>
+        <div class="links"><a href="{{ post.get_absolute_url }}" class="links" target="_blank"> Read!</a></div>
+        <div class="blog_tags">
+            Tags:
+            {% for tag in post.tags.all %}
+                <a href="{{ tag.get_absolute_url }}">#{{ tag.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- //One block -->

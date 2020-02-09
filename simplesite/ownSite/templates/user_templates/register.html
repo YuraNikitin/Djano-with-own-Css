@@ -1,0 +1,19 @@
+{% extends 'base_blog.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block content %}
+
+<div class="user-forms">
+    <div class="container">
+        <h1 > Registration :</h1>
+        <form  action="{% url 'register_user_url'  %}" method="post" >
+            {% include 'includes/form_create_template.html' %}
+            <button type="submit" class="button"  >Enter</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

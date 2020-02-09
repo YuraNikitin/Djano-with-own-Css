@@ -1,0 +1,18 @@
+{% extends 'base_blog.html' %}
+
+{% block title %}
+    Edit tag - {{ tag.title|title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="user-forms">
+    <div class="container">
+        <form action="{{ tag.get_update_url }}" method="post">
+            {% include 'includes/form_create_template.html' %}
+            <button type="submit" class="button">Update tag</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

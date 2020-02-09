@@ -1,0 +1,44 @@
+{% extends 'base_blog.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Image header -->
+<form action="{% url 'posts_list_url' %}">
+    <div class="img_header">
+        <div class="header_find">
+            <input type="text" placeholder="Posts, tags"  type="search" name="search">
+            <button type="submit">Find it</button>
+        </div>
+    </div>
+</form>
+
+<!-- Posts - content -->
+<div class="post">
+    <div class="container">
+        <div class="post_title">Posts:</div>
+        <div class="row">
+            {% for post in page_object.object_list %}
+                {% include 'includes/post_card_template.html' %}
+            {% endfor %}
+        </div>
+
+        {% if is_paginated %}
+            <div class="pagination">
+                <div class="container">
+                    <a  href="{{ prev_url }}" class="{% if not prev_url %} disabled {% endif %}" ><<<</a>
+                    {% for n in page_object.paginator.page_range %}
+                        {% if page_object.number == n %}
+                            <a  href="?page={{ n }}"class="active">{{ n }}</a>
+                        {% elif n > page_object.number|add:-3 and n < page_object.number|add:3 %}
+                            <a  href="?page={{ n }}">{{ n }}</a>
+                        {% endif %}
+                    {% endfor %}
+                    <a  href="{{ next_url }}" class="{% if not next_url %} disabled {% endif %}">>>></a>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

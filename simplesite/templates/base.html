@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Drive
+        {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Normalize styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <!-- Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon/icon.png' %}">
+    <!--  Own styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Add fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|PT+Sans+Caption:400,700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <a href="{% url 'all_posts_url' %}" class="title">Drive.ru</a>
+            </div>
+            <div class="col-4">
+                <p class="second_title">Сообщество машин и людей</p>
+            </div>
+            <div class="col-4">
+                <p class="menu">
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'posts_list_url' %}" class="button">My posts</a>
+                        <a href="{% url 'tags_list_url' %}" class="button">Tags#</a>
+                        <a href="{% url 'logout' %}" class="button">Exit</a>
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Content -->
+{% block content %}
+
+{% endblock %}
+
+<!-- Panel -->
+{% if request.user.is_authenticated  %}
+<div class="container">
+    <div class="admin-panel">
+        <a href="/admin" class="button-back admin"style="{% if request.user.is_staff  %}display: block;{% endif %}">Admin</a>
+        {% block admin-panel %}
+        {% endblock %}
+    </div>
+</div>
+{% endif %}
+
+<!-- Footer -->
+<div  class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <p class="footer_name">© DRIVE.RU, 2020</p>
+            </div>
+            <div class="col-4">
+                <p class="footer_social">Профили в социальных сетях:</p>
+                <p class="footer_social_icons">
+                    <a href="https://www.instagram.com/yuriy_andreyev1ch/?hl=ru" target="_blank" ><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://vk.com/yura.nikitin" target="_blank"><i class="fa fa-vk" aria-hidden="true"></i></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

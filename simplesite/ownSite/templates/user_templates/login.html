@@ -1,0 +1,25 @@
+{% extends 'base_blog.html' %}
+{% load static %}
+
+{% block title %}
+    Sign in
+{% endblock %}
+
+{% block content %}
+
+<div class="user-forms">
+    <div class="container">
+        <img src="{%static 'images/login.png' %}">
+        <h1> Sign In:</h1>
+        <form  action="{% url 'login'  %}" method="post" >
+            {% include 'includes/form_create_template.html' %}
+            <div >
+                New user?
+                <a href=" {% url 'register_user_url' %}"  class="link" target="_blank"> Click here to register</a>
+            </div>
+            <button type="submit" class="button" >Enter</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
